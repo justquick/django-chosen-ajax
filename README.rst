@@ -6,12 +6,12 @@ Django Chosen Ajax
    Eric Honkanen <eric@epicowl.com>
 :Version: 0.1.0
 
-django-chosen-ajax implements the `chosen <http://harvesthq.github.io/chosen/>` javascript library into the django admin for select form elements. It also implements ajax autocomplete functionality for form fields which have large numbers of related objects. The library currently uses `jquery <http://www.jquery.com>` and was inspired by `django-chosen <https://github.com/theatlantic/django-chosen>` and `chosen-ajax <https://github.com/meltingice/ajax-chosen>`.
+django-chosen-ajax implements the `chosen <http://harvesthq.github.io/chosen/>`_ javascript library into the django admin for select form elements. It also implements ajax autocomplete functionality for form fields which have large numbers of related objects. The library currently uses `jquery <http://www.jquery.com>`_ and was inspired by `django-chosen <https://github.com/theatlantic/django-chosen>`_ and `chosen-ajax <https://github.com/meltingice/ajax-chosen>`_.
 
 Features
 --------
 
-- Integrates `chosen <http://harvesthq.github.io/chosen/>` into the admin
+- Integrates `chosen <http://harvesthq.github.io/chosen/>`_ into the admin
 - Implements ajax functionality for ModelMultipleChoiceField's
 
 
@@ -25,6 +25,8 @@ Install with pip
     pip install git+https://github.com/epicowl/django-chosen-ajax.git#egg=django-chosen-ajax
 
 Add ``chosen`` to your ``INSTALLED_APPS``
+
+Run ``collectstatic``
 
 Compatibility
 ^^^^^^^^^^^^^
@@ -47,7 +49,11 @@ Subclass the ChosenAdminForm using the ChosenAjaxField for ajax fields and inclu
 
 
     class PonyForm(ChosenAdminForm):
-        ponies = ChosenAjaxField(required=False, queryset=Pony.objects.all(), search_fields=('name', 'breed',))
+        ponies = ChosenAjaxField(
+            required=False, 
+            queryset=Pony.objects.all(), 
+            search_fields=('name', 'breed',)
+        )
 
         class Meta:
             model = YourModel
