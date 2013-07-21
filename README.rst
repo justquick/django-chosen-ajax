@@ -1,4 +1,4 @@
-Django Chosen Ajax
+Overview
 ==================
 
 
