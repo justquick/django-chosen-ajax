@@ -3,13 +3,15 @@ from itertools import chain
 from django.forms.util import flatatt
 from django.forms.widgets import Select, SelectMultiple
 from django.utils.html import escape, conditional_escape
-from django.utils.encoding import force_text, force_unicode
+from django.utils.encoding import force_unicode
 from django.utils.safestring import mark_safe
 
 
 class ChosenSelect(Select):
 
-    def __init__(self, attrs={}, *args, **kwargs):
+    def __init__(self, attrs=None, *args, **kwargs):
+        if attrs is None:
+            attrs = {}
         attrs['class'] = 'chznSelect expanded'
         attrs['data-placeholder'] = 'Select an option...'
         super(ChosenSelect, self).__init__(attrs, *args, **kwargs)
@@ -17,7 +19,9 @@ class ChosenSelect(Select):
 
 class ChosenSelectMultiple(SelectMultiple):
 
-    def __init__(self, attrs={}, *args, **kwargs):
+    def __init__(self, attrs=None, *args, **kwargs):
+        if attrs is None:
+            attrs = {}
         attrs['class'] = 'chznSelect expanded'
         attrs['multiple'] = 'multiple'
         attrs['data-placeholder'] = 'Select an option...'
@@ -26,7 +30,9 @@ class ChosenSelectMultiple(SelectMultiple):
 
 class ChosenAjax(SelectMultiple):
 
-    def __init__(self, attrs={}, choices=(), *args, **kwargs):
+    def __init__(self, attrs=None, choices=(), *args, **kwargs):
+        if attrs is None:
+            attrs = {}
         attrs['class'] = 'chznAjax expanded'
         attrs['multiple'] = 'multiple'
         attrs['data-placeholder'] = 'Type to search...'
@@ -37,7 +43,8 @@ class ChosenAjax(SelectMultiple):
         self.choices = list(choices)
 
     def render(self, name, value, attrs=None, choices=()):
-        if value is None: value = ''
+        if value is None:
+            value = ''
         final_attrs = self.build_attrs(attrs, name=name)
         output = [u'<select%s>' % flatatt(final_attrs)]
         options = self.render_options(choices, value)
@@ -67,4 +74,3 @@ class ChosenAjax(SelectMultiple):
             if force_unicode(option_value) in selected_choices:
                 output.append(self.render_option(selected_choices, option_value, option_label))
         return u'\n'.join(output) 
-

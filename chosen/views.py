@@ -34,7 +34,7 @@ class JSONResponseMixin(object):
 
 
 class ChosenLookup(LoginRequiredMixin, JSONResponseMixin, View):
-   
+
     def get(self, request, *args, **kwargs):
         """
         Ajax-only view that parses a querystring for the search term, the model name, and the search fields
@@ -49,19 +49,10 @@ class ChosenLookup(LoginRequiredMixin, JSONResponseMixin, View):
                 try:
                     ct = ContentType.objects.get(app_label=app, model=model)
                 except ContentType.DoesNotExist:
-                    raise http404
+                    raise Http404
                 ct_class = ct.model_class()
-                conditions =[]
-                for field in fields.split():
-                    conditions.append({
-                        '{}__icontains'.format(field): term
-                    })
-                lookups = []
-                for obj in conditions:
-                    lookups.append(Q(**obj))
+                lookups = [Q(**{'{}__icontains'.format(field): term}) for field in fields.split()]   
                 qs = ct_class.objects.filter(reduce(operator.or_, lookups))
                 context = [{'value': item.pk, 'text': unicode(item)} for item in qs]
                 return self.render_to_json_response(context, *args, **kwargs)
         raise Http404
-
-
