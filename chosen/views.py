@@ -1,10 +1,20 @@
 import json
 import operator
 
-from django.db.models import Q
+from django.contrib.auth.decorators import login_required
 from django.contrib.contenttypes.models import ContentType
+from django.db.models import Q
 from django.http import Http404, HttpResponse
+from django.utils.decorators import method_decorator
 from django.views.generic import View
+
+
+class LoginRequiredMixin(object):
+    """
+    View mixin which requires that the user is authenticated.
+    """
+    def dispatch(self, *args, **kwargs):
+        return super(LoginRequiredMixin, self).dispatch(*args, **kwargs)
 
 
 class JSONResponseMixin(object):
@@ -29,7 +39,7 @@ class JSONResponseMixin(object):
             pass
 
 
-class ChosenLookup(JSONResponseMixin, View):
+class ChosenLookup(LoginRequiredMixin, JSONResponseMixin, View):
    
     def get(self, request, *args, **kwargs):
         """
