@@ -1,7 +1,7 @@
 Overview
 ==================
    
-.. image:: http://i.imgur.com/wK54oJF.jpg?2
+.. image:: http://i.imgur.com/wK54oJF.jpg?3
 
 :Author:
    Eric Honkanen <eric@epicowl.com>
