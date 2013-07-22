@@ -1,7 +1,8 @@
 Overview
 ==================
 
-<img src="http://i.imgur.com/FWNIt7L.jpg?1"/>
+.. image:: http://i.imgur.com/FWNIt7L.jpg?1
+   :width: 400px
 
 :Author:
    Eric Honkanen <eric@epicowl.com>
