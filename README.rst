@@ -1,11 +1,9 @@
 Overview
 ==================
 
-.. image:: http://i.imgur.com/FWNIt7L.jpg?2
-   :width: 200pt
+.. image:: http://i.imgur.com/FWNIt7L.jpg?4
    
-.. image:: http://i.imgur.com/wK54oJF.jpg?1
-   :width: 200pt
+.. image:: http://i.imgur.com/wK54oJF.jpg?2
 
 :Author:
    Eric Honkanen <eric@epicowl.com>
