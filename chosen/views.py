@@ -8,7 +8,7 @@ from django.http import Http404, HttpResponse
 from django.utils.decorators import method_decorator
 from django.views.generic import View
 
-from braces.views import LoginRequiredMixin
+from braces.views import LoginRequiredMixin, StaffuserRequiredMixin
 
 
 class JSONResponseMixin(object):
@@ -33,7 +33,7 @@ class JSONResponseMixin(object):
             pass
 
 
-class ChosenLookup(LoginRequiredMixin, JSONResponseMixin, View):
+class ChosenLookup(LoginRequiredMixin, StaffuserRequiredMixin, JSONResponseMixin, View):
 
     def get(self, request, *args, **kwargs):
         """
