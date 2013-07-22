@@ -1,7 +1,5 @@
 Overview
 ==================
-
-.. image:: http://i.imgur.com/FWNIt7L.jpg?4
    
 .. image:: http://i.imgur.com/wK54oJF.jpg?2
 
