@@ -1,11 +1,10 @@
-Overview
-==================
-   
-.. image:: http://i.imgur.com/wK54oJF.jpg?3
-
 :Author:
    Eric Honkanen <eric@epicowl.com>
 :Version: 0.1.0
+Overview
+==================
+
+.. image:: http://i.imgur.com/wK54oJF.jpg?3
 
 django-chosen-ajax implements the `chosen <http://harvesthq.github.io/chosen/>`_ javascript library into the django admin for select form elements. It also implements ajax autocomplete functionality for form fields which have large numbers of related objects. The library currently uses `jquery <http://www.jquery.com>`_ and was inspired by `django-chosen <https://github.com/theatlantic/django-chosen>`_ and `chosen-ajax <https://github.com/meltingice/ajax-chosen>`_.
 
@@ -41,7 +40,7 @@ django-chosen-ajax has been tested with
 Usage
 ------
 
-Subclass the ChosenAdminForm using the ChosenAjaxField for ajax fields and include the required ``search_fields=('field',)``
+Subclass the ChosenAdminForm using the ChosenAjaxField for ajax fields and include the required ``search_fields=('field',)`` where ``field`` is the name of a database field to use for the search lookup.
 
 .. code-block:: python
 
