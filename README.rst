@@ -58,6 +58,24 @@ Subclass the ChosenAdminForm using the ChosenAjaxField for ajax fields and inclu
         class Meta:
             model = YourModel
 
+
+Currently you will also have to add the admin site to your ModelAdmin to make the green add related button work.
+
+.. code-block:: python
+
+    from django.contrib import admin
+    from ponyapp.forms import PonyForm
+
+
+    class PonyAdmin(admin.ModelAdmin):
+        form = PonyForm
+
+        def __init__(self, model, admin_site):
+            super(PonyAdmin, self).__init__(model, admin_site)
+            self.form.admin_site = admin_site
+
+
 You can add as many fields to search_fields as you need, they get combined into a lookup. Everything else is automatic and handled in the ChosenAdminForm.
 
 Hit me up if you have questions or want to contribute!
+
