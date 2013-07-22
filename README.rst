@@ -2,10 +2,10 @@ Overview
 ==================
 
 .. image:: http://i.imgur.com/FWNIt7L.jpg?2
-   :width: 320px
+   :width: 200pt
    
 .. image:: http://i.imgur.com/wK54oJF.jpg?1
-   :width: 320px
+   :width: 200pt
 
 :Author:
    Eric Honkanen <eric@epicowl.com>
