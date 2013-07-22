@@ -10,7 +10,7 @@ class MetaDataViewsTest(TestCase):
 
     def setUp(self):
         """
-        Create some subjects to be used in tests.
+        Create some ponies to be used in tests.
         """
         ponies = [
             {'name': 'Star', 'breed': 'quarter horse'},
@@ -24,10 +24,10 @@ class MetaDataViewsTest(TestCase):
 
     def test_ajax_view(self):
         """
-        Test that the ajax_autocomplete view works properly.
+        Test that the view works properly.
         """
         kwargs = {'HTTP_X_REQUESTED_WITH': 'XMLHttpRequest'}
-        url = reverse('ajax_autocomplete')
+        url = reverse('chosen_lookup')
         get_data = {'q': 'horse', 'model': 'pony', 'app': 'chosen', 'fields': 'name breed'}
         response = self.client.get(url, get_data, **kwargs)
         print response.content
@@ -35,6 +35,6 @@ class MetaDataViewsTest(TestCase):
 
         json_string = response.content
         data = json.loads(json_string)  
-        self.assertEqual(data[0]['text'], u'Animals / Mammals / Siberian Tiger')
-        self.assertEqual(data[1]['text'], u'Animals / Mammals / Bengal Tiger')
+        self.assertEqual(data[0]['text'], u'')
+        self.assertEqual(data[1]['text'], u'')
 
