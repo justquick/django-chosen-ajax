@@ -7,6 +7,7 @@ class Pony(models.Model):
 
     class Meta:
         db_table = 'chosen_pony'
+        app_label = 'chosen'
 
     def __unicode__(self):
         return self.name
