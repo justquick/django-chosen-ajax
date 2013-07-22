@@ -1,6 +1,7 @@
 Overview
 ==================
 
+<img src="http://i.imgur.com/FWNIt7L.jpg?1"/>
 
 :Author:
    Eric Honkanen <eric@epicowl.com>
