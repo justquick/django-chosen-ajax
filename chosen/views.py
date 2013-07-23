@@ -8,29 +8,7 @@ from django.http import Http404, HttpResponse
 from django.utils.decorators import method_decorator
 from django.views.generic import View
 
-from braces.views import LoginRequiredMixin, StaffuserRequiredMixin
-
-
-class JSONResponseMixin(object):
-    """
-    A mixin that can be used to render a JSON response.
-    """
-    def render_to_json_response(self, context, **response_kwargs):
-        """
-        Returns a JSON response, transforming 'context' to make the payload.
-        """
-        return HttpResponse(
-            self.convert_context_to_json(context),
-            content_type='application/json',
-            **response_kwargs
-        )
-
-    def convert_context_to_json(self, context):
-        "Convert the context dictionary into a JSON object"
-        try:
-            return json.dumps(context)
-        except:
-            pass
+from braces.views import LoginRequiredMixin, JSONResponseMixin, StaffuserRequiredMixin
 
 
 class ChosenLookup(LoginRequiredMixin, StaffuserRequiredMixin, JSONResponseMixin, View):
@@ -54,5 +32,5 @@ class ChosenLookup(LoginRequiredMixin, StaffuserRequiredMixin, JSONResponseMixin
                 lookups = [Q(**{'{}__icontains'.format(field): term}) for field in fields.split()]   
                 qs = ct_class.objects.filter(reduce(operator.or_, lookups))
                 context = [{'value': item.pk, 'text': unicode(item)} for item in qs]
-                return self.render_to_json_response(context, *args, **kwargs)
+                return self.render_json_response(context, *args, **kwargs)
         raise Http404
