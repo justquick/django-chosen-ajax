@@ -41,7 +41,7 @@ class ChosenAdminForm(forms.ModelForm):
                     widgets.ChosenAjax(), self.instance._meta.get_field(field).rel, self.admin_site)
                 self.fields[field].queryset = queryset 
                 # Set attrs onto the widget so that we can pass it to the view for the queryset.
-                self.fields[field].widget.attrs['data-model'] = self.fields[field].queryset.model.__name__.lower()
-                self.fields[field].widget.attrs['data-app'] = self.fields[field].queryset.model.__module__.split('.')[0]
+                self.fields[field].widget.attrs['data-model'] = self.fields[field].queryset.model._meta.module_name
+                self.fields[field].widget.attrs['data-app'] = self.fields[field].queryset.model._meta.app_label
                 self.fields[field].widget.attrs['data-fields'] = self.fields[field].search_fields
 
