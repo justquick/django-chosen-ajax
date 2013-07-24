@@ -45,3 +45,10 @@ class ChosenAdminForm(forms.ModelForm):
                 self.fields[field].widget.attrs['data-app'] = self.fields[field].queryset.model._meta.app_label
                 self.fields[field].widget.attrs['data-fields'] = self.fields[field].search_fields
 
+    def clean(self):
+        """Custom clean method to strip whitespaces from CharField and TextField."""
+        cleaned_data = super(ChosenAdminForm, self).clean()
+        for field in cleaned_data:
+            if self.instance._meta.get_field(field).__class__.__name__ in ('CharField', 'TextField',):
+                cleaned_data[field] = cleaned_data[field].strip()
+        return cleaned_data
