@@ -30,10 +30,7 @@ class ChosenSelectMultiple(SelectMultiple):
 class ChosenAjax(SelectMultiple):
 
     def __init__(self, attrs=None, choices=(), *args, **kwargs):
-        if attrs is not None:
-            self.attrs = attrs.copy()
-        else:
-            self.attrs = {}
+        super(ChosenAjax, self).__init__(attrs, choices)
         self.attrs.update({
             'class': 'chznAjax expanded',
             'multiple': 'multiple',
