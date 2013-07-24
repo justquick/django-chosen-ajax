@@ -1,4 +1,5 @@
 from django import forms
+from django.db import models
 from django.contrib.admin.widgets import RelatedFieldWidgetWrapper
 
 from . import widgets
@@ -49,6 +50,6 @@ class ChosenAdminForm(forms.ModelForm):
         """Custom clean method to strip whitespaces from CharField and TextField."""
         cleaned_data = super(ChosenAdminForm, self).clean()
         for field in cleaned_data:
-            if self.instance._meta.get_field(field).__class__.__name__ in ('CharField', 'TextField',):
+            if isinstance(self.instance._meta.get_field(field), (models.CharField, models.TextField)):
                 cleaned_data[field] = cleaned_data[field].strip()
         return cleaned_data
