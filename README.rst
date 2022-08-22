@@ -1,5 +1,3 @@
-:Author:
-   Eric Honkanen <eric@epicowl.com>
 :Version: 0.1.0
 Overview
 ==================
